@@ -17,9 +17,9 @@ class Post {
     use Deletable;
 
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255)]
     private string $title;
@@ -36,9 +36,6 @@ class Post {
 
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'post', orphanRemoval: true)]
     private Collection $comments;
-
-    #[ORM\Column(type: 'integer')]
-    private int $like;
 
     public function __construct()
     {

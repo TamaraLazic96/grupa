@@ -7,16 +7,19 @@ use App\Entity\Traits\Timestamp;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class User {
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
+class User implements UserInterface {
 
     use Timestamp;
     use Deletable;
 
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private ?string $email = null;
@@ -52,7 +55,7 @@ class User {
         $this->comments = new ArrayCollection();
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -191,5 +194,16 @@ class User {
             }
         }
         return $this;
+    }
+
+    public function eraseCredentials(): void
+    {
+        // If you store temporary, sensitive data on the user, clear it here
+    }
+
+    public function getUserIdentifier(): string
+    {
+        // TODO: Implement getUserIdentifier() method.
+        return '';
     }
 }

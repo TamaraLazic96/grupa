@@ -7,15 +7,17 @@ use App\Entity\Traits\Timestamp;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class Comment
 {
     use Timestamp;
     use Deletable;
 
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'text')]
     #[Assert\NotBlank]
