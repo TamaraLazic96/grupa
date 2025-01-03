@@ -7,11 +7,12 @@ use App\Entity\Traits\Timestamp;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity]
 #[ORM\HasLifecycleCallbacks]
-class User implements UserInterface {
+class User implements UserInterface, PasswordAuthenticatedUserInterface {
 
     use Timestamp;
     use Deletable;
@@ -203,7 +204,6 @@ class User implements UserInterface {
 
     public function getUserIdentifier(): string
     {
-        // TODO: Implement getUserIdentifier() method.
-        return '';
+        return $this->email;
     }
 }
