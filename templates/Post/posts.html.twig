@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ "news.title"|trans|raw }}{% endblock %}
+
+{% block body %}
+    <div class="news">
+    <h1>{{ "news.title"|trans|raw }}</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <a href="{{ path('show_post', { id: post.id }) }}">
+                    <img src="uploads/posts/{{ post.thumbnail }}" alt="Thumbnail">
+                </a>
+                <div>
+                    <a href="{{ path('show_post', { id: post.id }) }}">
+                        <h3>{{ post.title }}</h3>
+                    </a>
+                    <p>{{ post.content|striptags|slice(0, 200) ~ '...' }}</p>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        {% if currentPage > 1 %}
+            <a href="{{ path('posts', { page: currentPage - 1 }) }}">Previous</a>
+        {% endif %}
+
+        <span>Page {{ currentPage }}</span>
+
+        <a href="{{ path('posts', { page: currentPage + 1 }) }}">Next</a>
+    </div>
+    </div>
+{% endblock %}

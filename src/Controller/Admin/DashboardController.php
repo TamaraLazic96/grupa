@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use App\Entity\Comment;
+use App\Entity\Page;
 use App\Entity\Post;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -31,7 +32,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         return [
-            MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
+            MenuItem::linkToRoute('Dashboard', 'fa fa-home', 'admin'),
 
             MenuItem::section('Blog'),
             MenuItem::linkToCrud('Blog Posts', 'fa fa-file-text', Post::class),
@@ -40,6 +41,7 @@ class DashboardController extends AbstractDashboardController
 
             MenuItem::section('Users'),
             MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
+            MenuItem::linkToCrud('Pages', 'fa fa-user', Page::class),
         ];
     }
 }

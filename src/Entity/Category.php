@@ -7,6 +7,7 @@ use App\Entity\Traits\Timestamp;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity]
 #[ORM\HasLifecycleCallbacks]
@@ -91,9 +92,14 @@ class Category {
         return $this->author;
     }
 
-    public function setAuthor(?User $user): self
+    public function setAuthor(User|UserInterface $user): self
     {
         $this->author = $user;
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getName();
     }
 }

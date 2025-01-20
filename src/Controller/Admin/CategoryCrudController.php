@@ -7,8 +7,16 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class CategoryCrudController extends AbstractCrudController {
+
+    private Security $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
 
     public static function getEntityFqcn(): string
     {
@@ -31,5 +39,15 @@ class CategoryCrudController extends AbstractCrudController {
             ->setPageTitle(Crud::PAGE_NEW, 'Add Category')
             ->setPageTitle(Crud::PAGE_EDIT, 'Edit Category')
             ->setPageTitle(Crud::PAGE_DETAIL, 'Category Details');
+    }
+
+    public function createEntity(string $entityFqcn): Category
+    {
+        $category = new Category();
+        $user = $this->security->getUser();
+
+        if ($user) $category->setAuthor($user);
+
+        return $category;
     }
 }

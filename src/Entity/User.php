@@ -4,14 +4,18 @@ namespace App\Entity;
 
 use App\Entity\Traits\Deletable;
 use App\Entity\Traits\Timestamp;
+use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-class User implements UserInterface {
+#[ORM\Table(name: "user")]
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+class User implements UserInterface, PasswordAuthenticatedUserInterface {
 
     use Timestamp;
     use Deletable;
@@ -22,7 +26,7 @@ class User implements UserInterface {
     private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    private ?string $email = null;
+    private ?string $email;
 
     #[ORM\Column(type: 'json')]
     private array $roles = [];
@@ -81,7 +85,11 @@ class User implements UserInterface {
 
     public function setRoles(array $roles): void
     {
-        $this->roles = $roles;
+        if (!in_array('ROLE_USER', $roles, true)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        $this->roles = array_unique($roles);
     }
 
     public function getUsername(): string
@@ -203,7 +211,6 @@ class User implements UserInterface {
 
     public function getUserIdentifier(): string
     {
-        // TODO: Implement getUserIdentifier() method.
-        return '';
+        return $this->email;
     }
 }

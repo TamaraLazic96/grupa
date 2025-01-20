@@ -8,9 +8,13 @@ use App\Repository\PostRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[Vich\Uploadable]
 class Post {
 
     use Timestamp;
@@ -26,6 +30,12 @@ class Post {
 
     #[ORM\Column(type: 'text')]
     private string $content;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $thumbnail = null;
+
+    #[Vich\UploadableField(mapping: 'post_thumbnails', fileNameProperty: 'thumbnail')]
+    private ?File $thumbnailFile = null;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'posts')]
     #[ORM\JoinColumn(nullable: false)]
@@ -64,7 +74,7 @@ class Post {
         return $this->author;
     }
 
-    public function setAuthor(?User $user): self
+    public function setAuthor(User|UserInterface $user): self
     {
         $this->author = $user;
         return $this;
@@ -122,5 +132,29 @@ class Post {
             }
         }
         return $this;
+    }
+
+    public function setThumbnailFile(?File $file = null): void
+    {
+        $this->thumbnailFile = $file;
+
+        if ($file) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getThumbnailFile(): ?File
+    {
+        return $this->thumbnailFile;
+    }
+
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?string $thumbnail): void
+    {
+        $this->thumbnail = $thumbnail;
     }
 }

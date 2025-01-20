@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block body %}
+    <div class="post-container">
+        <img class="post-thumbnail" src="{{ asset('uploads/posts/' ~ post.thumbnail) }}" alt="{{ post.title }}">
+        <div class="post-content">
+            <h1 class="post-title">{{ post.title }}</h1>
+            <div class="post-body">{{ post.content|raw }}</div>
+{#            <a href="{{ path('news') }}" class="back-link">&larr; Back to News</a>#}
+        </div>
+    </div>
+{% endblock %}

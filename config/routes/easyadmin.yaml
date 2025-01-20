@@ -1,0 +1,19 @@
+# config/routes/easyadmin.yaml
+easyadmin:
+#  entities:
+#    BlogPost:
+#      class: App\Entity\Post
+#      label: "Blog Posts"
+#    Category:
+#      class: App\Entity\Category
+#      label: "Categories"
+#    Comment:
+#      class: App\Entity\Comment
+#      label: "Comments"
+#    User:
+#      class: App\Entity\User
+#      label: "Users"
+  #dashboard:
+    #dashboard_route: 'admin'
+  resource: .
+  type: easyadmin.routes
