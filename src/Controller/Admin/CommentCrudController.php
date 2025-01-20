@@ -15,19 +15,17 @@ class CommentCrudController extends AbstractCrudController{
         return Comment::class;
     }
 
-//    public function configureFields(string $pageName): iterable
-//    {
-//        return [
-//            TextField::new('title'),
-//            TextField::new('description'),
-//        ];
-//    }
+    public function configureFields(string $pageName): iterable
+    {
+        return [
+            TextField::new('text'),
+        ];
+    }
 
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
             ->setPageTitle(Crud::PAGE_INDEX, 'Comments')
-            ->setPageTitle(Crud::PAGE_NEW, 'Add Comment')
             ->setPageTitle(Crud::PAGE_EDIT, 'Edit Comment')
             ->setPageTitle(Crud::PAGE_DETAIL, 'Comment Details');
     }

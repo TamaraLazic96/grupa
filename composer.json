@@ -33,18 +33,18 @@
         "symfony/property-access": "7.0.*",
         "symfony/property-info": "7.0.*",
         "symfony/runtime": "7.0.*",
-        "symfony/security-bundle": "7.0.*",
         "symfony/serializer": "7.0.*",
         "symfony/stimulus-bundle": "^2.17",
         "symfony/string": "7.0.*",
         "symfony/translation": "7.0.*",
         "symfony/twig-bundle": "7.0.*",
         "symfony/ux-turbo": "^2.17",
-        "symfony/validator": "7.0.*",
         "symfony/web-link": "7.0.*",
         "symfony/yaml": "7.0.*",
+        "symfonycasts/verify-email-bundle": "^1.17",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "vich/uploader-bundle": "^2.5"
     },
     "config": {
         "allow-plugins": {
@@ -101,9 +101,11 @@
         "symfony/browser-kit": "7.0.*",
         "symfony/css-selector": "7.0.*",
         "symfony/debug-bundle": "7.0.*",
-        "symfony/maker-bundle": "^1.0",
+        "symfony/maker-bundle": "^1.61",
         "symfony/phpunit-bridge": "^7.0",
+        "symfony/security-bundle": "7.0.*",
         "symfony/stopwatch": "7.0.*",
+        "symfony/validator": "7.0.*",
         "symfony/web-profiler-bundle": "7.0.*"
     }
 }

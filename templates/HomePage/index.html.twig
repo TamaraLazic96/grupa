@@ -3,5 +3,30 @@
 {% block title %}Home Page{% endblock %}
 
 {% block body %}
-    <h2>{{ message }}</h2>
+    <section class="hero">
+        <div class="container">
+            <img src="{{ asset('images/yellow.jpeg') }}" alt="Grupa image" class="homepage-image" >
+            <h2>{{ "homepage.title_one"|trans|raw }}</h2>
+            <p>{{ "homepage.paragraph_one"|trans|raw }}</p>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>{{ "homepage.title_two"|trans|raw }}</h2>
+            <p>{{ "homepage.paragraph_two"|trans|raw }}</p>
+        </div>
+    </section>
+
+    <section id="mission" class="mission">
+        <div class="container">
+            <h2>{{ "homepage.title_two"|trans|raw }}</h2>
+            <ul>
+                <li>{{ "homepage.list_one.first"|trans|raw }}</li>
+                <li>{{ "homepage.list_one.second"|trans|raw }}</li>
+                <li>{{ "homepage.list_one.third"|trans|raw }}</li>
+            </ul>
+        </div>
+    </section>
+
 {% endblock %}
