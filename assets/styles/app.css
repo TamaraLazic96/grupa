@@ -4,7 +4,7 @@ body, html {
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    color: #333;
+    color: #444;
 }
 main {
     padding: 20px;
@@ -13,6 +13,13 @@ main {
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #666;
+    text-align: center;
+    padding: 30px;
+    margin: 0;
 }
 
 /*** HEADER ***/
@@ -36,9 +43,9 @@ header {
     padding: 20px 10px;
 }
 .logo {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: bold;
-    color: #333;
+    color: #444;
 }
 .nav-links {
     list-style: none;
@@ -52,14 +59,19 @@ header {
 }
 .nav-links a {
     text-decoration: none;
-    color: #333;
+    color: #444;
     font-weight: bold;
     padding: 20px 15px;
     border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 .nav-links a:hover {
-    background-color: #333;
+    background-color: #444;
+    color: #ffcc00;
+}
+
+.nav-links a:active {
+    background-color: #666;
     color: #ffcc00;
 }
 
@@ -116,7 +128,7 @@ footer {
 
 .login-container h2 {
     margin-bottom: 20px;
-    color: #333;
+    color: #444;
     font-weight: bold;
 }
 
@@ -129,23 +141,22 @@ label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #333;
+    color: #444;
 }
 
-input[type="email"],
-input[type="password"] {
+/*** input[type="password"], [type="email"] ***/
+.form-group input, .form-group textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #666;
     border-radius: 4px;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 1rem;
     transition: border-color 0.3s ease-in-out;
 }
 
-input[type="email"]:focus,
-input[type="password"]:focus {
-    border-color: #007bff;
+.form-group input:focus, .form-group textarea:focus {
+    border-color: #ffcc00;
     outline: none;
 }
 
@@ -156,7 +167,7 @@ input[type="password"]:focus {
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
     transition: background-color 0.3s ease-in-out;
 }
 
@@ -165,48 +176,11 @@ input[type="password"]:focus {
 }
 
 /*** HOME PAGE ***/
-.hero {
-    background: #ffcb1bcf;
-    color: white;
-    text-align: center;
-    padding: 0 0 5rem;
-}
-
-
-.hero h2 {
-    font-size: 2.5rem;
-}
-
-section {
-    padding: 2rem 0;
-}
-
-section h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 1.5rem;
-}
-
-.about, .mission, .events {
-    background: #f4f4f4;
-    padding: 2rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-}
-
-.hero img{
-    width: 100%;
-    max-height: 300px;
+.section{
+    text-align: left;
 }
 
 /*** NEWS ***/
-.news h1 {
-    color: #666;
-    text-align: center;
-    padding: 30px;
-    margin: 0;
-}
-
 .news a{
     text-decoration: none;
 }
@@ -248,7 +222,6 @@ section h2 {
 }
 
 /*** SINGLE POST ***/
-
 .post-container {
     margin: 0 auto;
     background-color: #fff;
@@ -271,14 +244,39 @@ section h2 {
 
 .post-title {
     font-size: 2em;
-    color: #ffcc02;
+    /*color: #ffcc02;*/
     margin: 20px 0;
+    padding: 0;
 }
 
 .post-body {
-    font-size: 1em;
+    font-size: 1.2em;
     line-height: 1.6;
     color: #666;
     margin-bottom: 20px;
     text-align: justify;
+}
+
+/*** CONTACT US ***/
+.contact-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.contact-container h2 {
+    color: #444;
+    text-align: center;
+}
+
+.contact-container .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
 }
