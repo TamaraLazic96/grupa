@@ -19,7 +19,7 @@
 <body>
 <header>
     <div class="header-content">
-        <img src="images/yellow.jpeg" alt="Header Image" class="header-image">
+        <img src="{{ asset('images/yellow.jpeg')}}" alt="Header Image" class="header-image">
     </div>
     <nav class="navbar">
         <div class="logo">{{ "home_title"|trans|raw }}</div>
@@ -27,8 +27,8 @@
             <li><a href="{{ path('home') }}">{{ "header_home"|trans|raw }}</a></li>
             <li><a href="{{ path('posts') }}">{{ "header_news"|trans|raw }}</a></li>
             <li><a href="{{ path('about-us') }}">{{ "header_about_us"|trans|raw }}</a></li>
-            <li><a href="">{{ "header_contact_us"|trans|raw }}</a></li>
-            <li><a href="">{{ "header_login"|trans|raw }}</a></li>
+            <li><a href="{{ path('contact') }}">{{ "header_contact_us"|trans|raw }}</a></li>
+            {# <li><a href="">{{ "header_login"|trans|raw }}</a></li> #}
         </ul>
     </nav>
 </header>
