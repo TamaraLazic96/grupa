@@ -17,20 +17,21 @@ class RegistrationType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('firstName', TextType::class)
-            ->add('lastName', TextType::class)
+            ->add('username', TextType::class, ['label' => 'register.username'])
+            ->add('email', EmailType::class, ['label' => 'register.email'])
+            ->add('firstName', TextType::class, ['label' => 'register.first_name'])
+            ->add('lastName', TextType::class, ['label' => 'register.last_name'])
             ->add('password', PasswordType::class, [
+                'label' => 'register.password',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'resister.not_blank',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'register.min_length',
                         'max' => 4096,
                     ]),
                 ],

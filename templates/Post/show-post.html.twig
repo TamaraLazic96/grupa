@@ -3,12 +3,13 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block body %}
-    <div class="post-container">
-        <img class="post-thumbnail" src="{{ asset('uploads/posts/' ~ post.thumbnail) }}" alt="{{ post.title }}">
-        <div class="post-content">
-            <h1 class="post-title">{{ post.title }}</h1>
-            <div class="post-body">{{ post.content|raw }}</div>
-{#            <a href="{{ path('news') }}" class="back-link">&larr; Back to News</a>#}
+    <div class="mx-auto max-w-2xl w-full overflow-hidden text-center">
+        <img class="w-full h-auto max-h-96 object-cover" src="{{ asset('uploads/posts/' ~ post.thumbnail) }}" alt="{{ post.title }}">
+        <div class="md:p-6 p-2">
+            <h1 class="text-3xl font-bold my-5">{{ post.title }}</h1>
+            <div class="text-lg leading-relaxed text-justify">
+                {{ post.content|raw }}
+            </div>
         </div>
     </div>
 {% endblock %}

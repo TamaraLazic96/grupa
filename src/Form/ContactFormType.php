@@ -22,20 +22,20 @@ class ContactFormType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => $this->translator->trans('contact-form.name'),
+                'label' => $this->translator->trans('contact.name'),
             ])
             ->add('subject', TextType::class, [
-                'label' => $this->translator->trans('contact-form.subject'),
+                'label' => $this->translator->trans('contact.subject'),
             ])
             ->add('email', EmailType::class, [
-                'label' => $this->translator->trans('contact-form.email'),
+                'label' => $this->translator->trans('contact.email'),
             ])
             ->add('message', TextareaType::class, [
-                'label' => $this->translator->trans('contact-form.message'),
+                'label' => $this->translator->trans('contact.message'),
                 'attr' => ['rows' => 5],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => $this->translator->trans('contact-form.send'),
+                'label' => $this->translator->trans('contact.send'),
                 'attr' => ['class' => 'btn btn-primary'],
             ]);
     }
