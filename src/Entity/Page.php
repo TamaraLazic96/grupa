@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use App\Entity\Traits\Deletable;
 use App\Entity\Traits\Timestamp;
+use App\Repository\PageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
-#[ORM\Entity]
 #[ORM\HasLifecycleCallbacks]
+#[ORM\Entity(repositoryClass: PageRepository::class)]
 class Page
 {
     use Timestamp;
@@ -23,6 +26,13 @@ class Page
 
     #[ORM\Column(type: 'text')]
     private string $content;
+
+    #[ORM\OneToMany(targetEntity: PageSection::class, mappedBy: 'page', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    private Collection $sections;
+
+    public function __construct() {
+        $this->sections = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -48,6 +58,26 @@ class Page
     public function setContent(string $content): self
     {
         $this->content = $content;
+        return $this;
+    }
+
+    public function getSections(): Collection {
+        return $this->sections;
+    }
+
+    public function addSection(PageSection $section): self {
+        if (!$this->sections->contains($section)) {
+            $this->sections[] = $section;
+            $section->setPage($this);
+        }
+        return $this;
+    }
+    public function removeSection(PageSection $section): self {
+        if ($this->sections->removeElement($section)) {
+            if ($section->getPage() === $this) {
+                $section->setPage(null);
+            }
+        }
         return $this;
     }
 }

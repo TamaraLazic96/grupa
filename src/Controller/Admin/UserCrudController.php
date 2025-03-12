@@ -23,7 +23,7 @@ class UserCrudController extends AbstractCrudController {
             TextField::new('firstName', 'First name'),
             TextField::new('lastName', 'Last name'),
             EmailField::new('email', 'Email'),
-//            TextField::new('password', 'Password'),
+            TextField::new('password', 'Password'),
             ChoiceField::new('roles')->setChoices(
                 [
                     'User' => 'ROLE_USER',
@@ -39,7 +39,7 @@ class UserCrudController extends AbstractCrudController {
     {
         return $crud
             ->setPageTitle(Crud::PAGE_INDEX, 'Users')
-//            ->setPageTitle(Crud::PAGE_NEW, 'Add User')
+            ->setPageTitle(Crud::PAGE_NEW, 'Add User')
             ->setPageTitle(Crud::PAGE_EDIT, 'Edit User')
             ->setPageTitle(Crud::PAGE_DETAIL, 'User Details');
     }

@@ -12,10 +12,15 @@ class PostController extends AbstractController {
     #[Route('/posts/{page}', name: 'posts', requirements: ['page' => '\d+'], defaults: ['page' => 1])]
     public function posts(PostRepository $postRepository, int $page = 1): Response
     {
-        $posts = $postRepository->findAllPosts(10, ($page - 1) * 10);
+        $postsPerPage = 8;
+        $posts = $postRepository->findAllPosts($postsPerPage, ($page - 1) * $postsPerPage);
+
+        $totalPosts = $postRepository->count();
+        $totalPages = ceil($totalPosts / $postsPerPage);
 
         return $this->render('Post/posts.html.twig', [
             'posts' => $posts,
+            'totalPages' => $totalPages,
             'currentPage' => $page,
         ]);
     }

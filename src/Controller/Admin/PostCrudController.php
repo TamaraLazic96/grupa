@@ -43,7 +43,7 @@ class PostCrudController extends AbstractCrudController {
                 ->setFormTypeOptions([
                     'by_reference' => false,
                 ])
-                ->setRequired(true),
+                ->setRequired(false),
         ];
     }
 

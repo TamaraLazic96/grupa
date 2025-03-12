@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ContactFormType;
+use App\Repository\PageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +16,12 @@ use Symfony\Component\Mime\Email;
 class HomePageController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(): Response {
+    public function index(PageRepository $pageRepository): Response {
+
+        $page = $pageRepository->findPageByTitle('ПРОГРАМ ГРУПА');
 
         return $this->render('HomePage/index.html.twig', [
-            'message' => 'Prvi kontroler'
+            'page' => $page
         ]);
     }
 
@@ -26,7 +29,7 @@ class HomePageController extends AbstractController
     public function aboutUs(): Response {
 
         return $this->render('HomePage/about-us.html.twig', [
-            'message' => 'Prvi kontroler'
+            'message' => 'First Controller About Us'
         ]);
     }
 

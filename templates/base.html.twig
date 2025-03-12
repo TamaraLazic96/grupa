@@ -17,31 +17,69 @@
     {% endblock %}
 </head>
 <body>
-<header>
-    <div class="header-content">
-        <img src="{{ asset('images/yellow.jpeg')}}" alt="Header Image" class="header-image">
-    </div>
-    <nav class="navbar">
-        <div class="logo">{{ "home_title"|trans|raw }}</div>
-        <ul class="nav-links">
-            <li><a href="{{ path('home') }}">{{ "header_home"|trans|raw }}</a></li>
-            <li><a href="{{ path('posts') }}">{{ "header_news"|trans|raw }}</a></li>
-            <li><a href="{{ path('about-us') }}">{{ "header_about_us"|trans|raw }}</a></li>
-            <li><a href="{{ path('contact') }}">{{ "header_contact_us"|trans|raw }}</a></li>
-            {# <li><a href="">{{ "header_login"|trans|raw }}</a></li> #}
+<header class="sticky-nav bg-amber-300">
+    <nav class="navbar max-w-screen-lg mx-auto p-4 flex flex-col lg:flex-row justify-between items-center text-white">
+        <!-- Logo and Hamburger in the same row for mobile -->
+        <div class="flex w-full justify-between items-center lg:w-auto">
+            <div class="logo">
+                {{ "home_title"|trans|raw }}
+            </div>
+
+            <!-- Hamburger Icon for Mobile (always visible on small screens) -->
+            <div class="lg:hidden">
+                <button class="focus:outline-none" id="menu-toggle">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Desktop Navigation Links (Visible on larger screens) -->
+        <ul class="max-w-md nav-links hidden lg:flex space-x-4">
+            <li class=""><a href="{{ path('home') }}"
+                   class="hover:border-b-2 border-white px-2 py-1 {{ app.request.attributes.get('_route') == 'home' ? 'border-b-2' : '' }}">
+                    {{ "header_home"|trans|raw }}</a></li>
+            <li><a href="{{ path('posts') }}"
+                   class="hover:border-b-2 border-white px-2 py-1 {{ app.request.attributes.get('_route') == 'posts' ? 'border-b-2' : '' }}">
+                    {{ "header_news"|trans|raw }}</a></li>
+            <li><a href="{{ path('about-us') }}"
+                   class="hover:border-b-2 border-white px-2 py-1 {{ app.request.attributes.get('_route') == 'about-us' ? 'border-b-2' : '' }}">
+                    {{ "header_about_us"|trans|raw }}</a></li>
+            <li><a href="{{ path('contact') }}"
+                   class="hover:border-b-2 border-white px-2 py-1 {{ app.request.attributes.get('_route') == 'contact' ? 'border-b-2' : '' }}">
+                    {{ "header_contact_us"|trans|raw }}</a></li>
+        </ul>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <ul class="lg:hidden hidden space-y-4 mt-4 w-full" id="mobile-menu">
+            <li><a href="{{ path('home') }}"
+                   class="hover:border-b-2 border-white block py-2 px-4 {{ app.request.attributes.get('_route') == 'home' ? 'border-b-2' : '' }}">
+                    {{ "header_home"|trans|raw }}</a></li>
+            <li><a href="{{ path('posts') }}"
+                   class="hover:border-b-2 border-white block py-2 px-4 {{ app.request.attributes.get('_route') == 'posts' ? 'border-b-2' : '' }}">
+                    {{ "header_news"|trans|raw }}</a></li>
+            <li><a href="{{ path('about-us') }}"
+                   class="hover:border-b-2 border-white block py-2 px-4 {{ app.request.attributes.get('_route') == 'about-us' ? 'border-b-2' : '' }}">
+                    {{ "header_about_us"|trans|raw }}</a></li>
+            <li><a href="{{ path('contact') }}"
+                   class="hover:border-b-2 border-white block py-2 px-4 {{ app.request.attributes.get('_route') == 'contact' ? 'border-b-2' : '' }}">
+                    {{ "header_contact_us"|trans|raw }}</a></li>
         </ul>
     </nav>
 </header>
 
-<main>
+<main class="max-w-screen-lg mx-auto p-2 bg-white min-h-screen">
     {% block body %}{% endblock %}
 </main>
 
-<footer>
-    <div class="container">
-        <p>&copy; 2025 United Progress Initiative. All Rights Reserved.</p>
-    </div>
+<footer class="bg-amber-300 p-2 text-center text-white">
+    <p>&copy; 2025 United Progress Initiative. All Rights Reserved.</p>
 </footer>
-
+<script>
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.remove('hidden');
+    })
+</script>
 </body>
 </html>
