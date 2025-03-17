@@ -43,7 +43,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::section('Blog'),
             MenuItem::linkToCrud('Blog Posts', 'fa fa-file-text', Post::class),
             MenuItem::linkToCrud('Categories', 'fa fa-tags', Category::class),
-            MenuItem::linkToCrud('Comments', 'fa fa-comment', Comment::class),
+//            MenuItem::linkToCrud('Comments', 'fa fa-comment', Comment::class),
 
             MenuItem::section('Users'),
             MenuItem::linkToCrud('Users', 'fa fa-user', User::class),

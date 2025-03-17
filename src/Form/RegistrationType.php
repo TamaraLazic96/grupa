@@ -27,12 +27,22 @@ class RegistrationType extends AbstractType {
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'resister.not_blank',
+                        'message' => 'register.not_blank',
                     ]),
                     new Length([
                         'min' => 6,
                         'minMessage' => 'register.min_length',
                         'max' => 4096,
+                    ]),
+                ],
+            ])
+            ->add('confirmPassword', PasswordType::class, [
+                'label' => 'register.confirm_password',
+                'mapped' => false,
+                'attr' => ['autocomplete' => 'new-password'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'register.not_blank',
                     ]),
                 ],
             ]);

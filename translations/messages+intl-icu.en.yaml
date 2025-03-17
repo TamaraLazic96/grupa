@@ -1,28 +1,17 @@
-home_welcome: 'Добродошли'
-home_title: 'Група комшија'
+default:
+  page_title: 'Група комшија'
 
-header_home: 'Почетна'
-header_news: 'Вести'
-header_about_us: 'О нама'
-header_contact_us: 'Контактирајте нас'
-header_login: 'Улогуј се'
+header:
+  home: 'Почетна'
+  news: 'Вести'
+  about_us: 'О нама'
+  contact_us: 'Контактирајте нас'
+  login: 'Улогуј се'
+  logout: 'Излогуј се'
+  register: 'Региструј се'
 
-login:
-  title: 'Улогуј се'
-  email: 'Електронска пошта'
-  password: 'Лозинка'
-  button: 'Улогуј се'
-
-register:
-  title: 'Региструј се'
-  username: 'Корисничко име'
-  first_name: 'Име'
-  last_name: 'Презиме'
-  email: 'Електронска пошта'
-  password: 'Лозинка'
-  button: 'Региструј се'
-  min_length: 'Лозинка мора бити дужа'
-  not_blank: 'Лозинка не сме бити празна'
+footer:
+  rights: 'Сва права задржава организација "Група комшија, не партија".'
 
 homepage:
   page_title: 'ГРУПА'
@@ -41,3 +30,32 @@ contact:
   subject: 'Тема'
   message: 'Порука'
   send: 'Пошаљи'
+
+login:
+  title: 'Улогуј се'
+  email: 'Електронска пошта'
+  password: 'Лозинка'
+  button: 'Улогуј се'
+  flash:
+    not_confirmed: 'Ваша е-пошта није верификована. Проверите своје пријемно сандуче.'
+    invalid_credentials: 'Неважећи акредитиви.'
+
+register:
+  title: 'Региструј се'
+  username: 'Корисничко име'
+  first_name: 'Име'
+  last_name: 'Презиме'
+  email: 'Електронска пошта'
+  password: 'Лозинка'
+  confirm_password: 'Поновите лозинку'
+  button: 'Региструј се'
+  min_length: 'Лозинка мора бити дужа'
+  not_blank: 'Лозинка не сме бити празна'
+  flash:
+    password_mismatch: 'Лозинка се не поклапа'
+  email_confirm:
+    subject: 'Потврдите вашу електроску пошту'
+    title: 'Потврдите своју е-пошту'
+    content: 'Хвала што сте се регистровали! Кликните на линк испод да потврдите своју е-пошту:'
+    button: 'Потврдите е-пошту'
+    small_content: 'Ако се нисте регистровали, занемарите ову е-пошту.'
