@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -42,6 +43,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
 
     #[ORM\Column(type: 'string', length: 255)]
     private string $lastName;
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $confirmationToken = null;
+
+    #[ORM\Column(type: 'boolean')]
+    private bool $isVerified = false;
 
     #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'author', cascade: ['persist', 'remove'])]
     private Collection $posts;
@@ -132,6 +139,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
         $this->lastName = $lastName;
     }
 
+    public function getConfirmationToken(): ?string
+    {
+        return $this->confirmationToken;
+    }
+
+    public function setConfirmationToken(?string $confirmationToken): self
+    {
+        $this->confirmationToken = $confirmationToken;
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+        return $this;
+    }
+
     public function getPosts(): Collection
     {
         return $this->posts;
@@ -206,7 +235,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
 
     public function eraseCredentials(): void
     {
-        // If you store temporary, sensitive data on the user, clear it here
+        if (!$this->isVerified) {
+            throw new CustomUserMessageAuthenticationException('Your email is not verified.');
+        }
     }
 
     public function getUserIdentifier(): string

@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         {% block title %}
-            {{ "home_welcome"|trans|raw }}
+            {{ "default.page_title"|trans|raw }}
         {% endblock %}
     </title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('icons/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('icons/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('icons/apple-touch-icon.png') }}">
     {% block stylesheets %}
     {% endblock %}
 
@@ -22,7 +24,7 @@
         <!-- Logo and Hamburger in the same row for mobile -->
         <div class="flex w-full justify-between items-center lg:w-auto">
             <div class="logo">
-                {{ "home_title"|trans|raw }}
+                {{ "default.page_title"|trans|raw }}
             </div>
 
             <!-- Hamburger Icon for Mobile (always visible on small screens) -->
@@ -36,46 +38,66 @@
         </div>
 
         <!-- Desktop Navigation Links (Visible on larger screens) -->
-        <ul class="max-w-md nav-links hidden lg:flex space-x-4">
+        <ul class="max-w-2xl nav-links hidden lg:flex space-x-4">
             <li class=""><a href="{{ path('home') }}"
                    class="hover:border-b-2 border-white px-2 py-1 {{ app.request.attributes.get('_route') == 'home' ? 'border-b-2' : '' }}">
-                    {{ "header_home"|trans|raw }}</a></li>
+                    {{ "header.home"|trans|raw }}</a></li>
             <li><a href="{{ path('posts') }}"
                    class="hover:border-b-2 border-white px-2 py-1 {{ app.request.attributes.get('_route') == 'posts' ? 'border-b-2' : '' }}">
-                    {{ "header_news"|trans|raw }}</a></li>
+                    {{ "header.news"|trans|raw }}</a></li>
             <li><a href="{{ path('about-us') }}"
                    class="hover:border-b-2 border-white px-2 py-1 {{ app.request.attributes.get('_route') == 'about-us' ? 'border-b-2' : '' }}">
-                    {{ "header_about_us"|trans|raw }}</a></li>
+                    {{ "header.about_us"|trans|raw }}</a></li>
             <li><a href="{{ path('contact') }}"
                    class="hover:border-b-2 border-white px-2 py-1 {{ app.request.attributes.get('_route') == 'contact' ? 'border-b-2' : '' }}">
-                    {{ "header_contact_us"|trans|raw }}</a></li>
+                    {{ "header.contact_us"|trans|raw }}</a></li>
+            <!-- Authentication Links -->
+{#            {% if app.user %}#}
+{#                <li><a href="{{ path('app_logout') }}" class="hover:border-b-2 border-white px-2 py-1">{{ "header.logout"|trans|raw }}</a></li>#}
+{#            {% else %}#}
+{#                <li><a href="{{ path('app_login') }}" class="hover:border-b-2 border-white px-2 py-1">{{ "header.login"|trans|raw }}</a></li>#}
+{#                <li><a href="{{ path('app_register') }}" class="hover:border-b-2 border-white px-2 py-1">{{ "header.register"|trans|raw }}</a></li>#}
+{#            {% endif %}#}
         </ul>
 
         <!-- Mobile Menu (Hidden by default) -->
         <ul class="lg:hidden hidden space-y-4 mt-4 w-full" id="mobile-menu">
             <li><a href="{{ path('home') }}"
                    class="hover:border-b-2 border-white block py-2 px-4 {{ app.request.attributes.get('_route') == 'home' ? 'border-b-2' : '' }}">
-                    {{ "header_home"|trans|raw }}</a></li>
+                    {{ "header.home"|trans|raw }}</a></li>
             <li><a href="{{ path('posts') }}"
                    class="hover:border-b-2 border-white block py-2 px-4 {{ app.request.attributes.get('_route') == 'posts' ? 'border-b-2' : '' }}">
-                    {{ "header_news"|trans|raw }}</a></li>
+                    {{ "header.news"|trans|raw }}</a></li>
             <li><a href="{{ path('about-us') }}"
                    class="hover:border-b-2 border-white block py-2 px-4 {{ app.request.attributes.get('_route') == 'about-us' ? 'border-b-2' : '' }}">
-                    {{ "header_about_us"|trans|raw }}</a></li>
+                    {{ "header.about_us"|trans|raw }}</a></li>
             <li><a href="{{ path('contact') }}"
                    class="hover:border-b-2 border-white block py-2 px-4 {{ app.request.attributes.get('_route') == 'contact' ? 'border-b-2' : '' }}">
-                    {{ "header_contact_us"|trans|raw }}</a></li>
+                    {{ "header.contact_us"|trans|raw }}</a></li>
         </ul>
     </nav>
 </header>
 
-<main class="max-w-screen-lg mx-auto p-2 bg-white min-h-screen">
+<main class="max-w-screen-lg mx-auto p-2 bg-white min-h-[90vh]">
     {% block body %}{% endblock %}
 </main>
-
-<footer class="bg-amber-300 p-2 text-center text-white">
-    <p>&copy; 2025 United Progress Initiative. All Rights Reserved.</p>
+<footer class="bg-amber-300 p-4 text-center text-white">
+    <div class="max-w-screen-md container mx-auto flex flex-col md:flex-row justify-between items-center">
+        <p class="text-sm md:text-base mt-2 flex items-center">&copy; {{ "now"|date("Y") }} {{ "footer.rights"|trans|raw }}</p>
+        <div class="flex space-x-4">
+            <a href="https://www.instagram.com/grupa_pancevo/#" target="_blank" class="transition-transform duration-200 hover:scale-110">
+                {% include 'Icons/instagram.html.twig' %}
+            </a>
+            <a href="https://www.facebook.com/groups/182304357871057" target="_blank" class="transition-transform duration-200 hover:scale-110">
+                {% include 'Icons/facebook.html.twig' %}
+            </a>
+{#            <a href="#" target="_blank" class="transition-transform duration-200 hover:scale-110">#}
+{#                {% include 'Icons/twitter.html.twig' %}#}
+{#            </a>#}
+        </div>
+    </div>
 </footer>
+
 <script>
     document.getElementById('menu-toggle').addEventListener('click', () => {
         document.getElementById('mobile-menu').classList.remove('hidden');
