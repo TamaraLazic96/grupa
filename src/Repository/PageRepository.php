@@ -23,4 +23,15 @@ class PageRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function findPageById(int $id): ?Page
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.sections', 's')
+            ->addSelect('s')
+            ->where('p.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

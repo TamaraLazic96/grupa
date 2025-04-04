@@ -18,7 +18,7 @@ class HomePageController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(PageRepository $pageRepository): Response {
 
-        $page = $pageRepository->findPageByTitle('ПРОГРАМ ГРУПА');
+        $page = $pageRepository->findPageById(1);
 
         return $this->render('HomePage/index.html.twig', [
             'page' => $page
@@ -26,10 +26,12 @@ class HomePageController extends AbstractController
     }
 
     #[Route('/about-us', name: 'about-us')]
-    public function aboutUs(): Response {
+    public function aboutUs(PageRepository $pageRepository): Response {
+
+        $page = $pageRepository->findPageById(2);
 
         return $this->render('HomePage/about-us.html.twig', [
-            'message' => 'First Controller About Us'
+            'page' => $page
         ]);
     }
 

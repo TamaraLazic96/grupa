@@ -4,7 +4,7 @@ default:
 header:
   home: 'Почетна'
   news: 'Вести'
-  about_us: 'О нама'
+  about_us: 'Главни одбор'
   contact_us: 'Контактирајте нас'
   login: 'Улогуј се'
   logout: 'Излогуј се'
@@ -12,9 +12,6 @@ header:
 
 footer:
   rights: 'Сва права задржава организација "Група комшија, не партија".'
-
-homepage:
-  page_title: 'ГРУПА'
 
 news:
   page_title: 'ГРУПА - Најновије Вести'

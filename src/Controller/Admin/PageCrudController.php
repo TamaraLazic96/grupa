@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Page;
 use App\Entity\PageSection;
 use App\Form\PageSectionType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
@@ -50,5 +52,11 @@ class PageCrudController extends AbstractCrudController {
             ->setPageTitle(Crud::PAGE_NEW, 'Add Page')
             ->setPageTitle(Crud::PAGE_EDIT, 'Edit Page')
             ->setPageTitle(Crud::PAGE_DETAIL, 'Page Details');
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->disable(Action::DELETE);
     }
 }

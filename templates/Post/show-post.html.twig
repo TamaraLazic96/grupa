@@ -3,13 +3,12 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block body %}
-    <div class="max-w-3xl m-auto w-full overflow-hidden text-center">
-        <img class="w-full h-auto max-h-96 object-cover" src="{{ asset('uploads/posts/' ~ post.thumbnail) }}" alt="{{ post.title }}">
-        <div class="md:p-6 p-2">
-            <h1 class="text-3xl font-bold my-5">{{ post.title }}</h1>
-            <div class="text-lg leading-relaxed text-justify">
-                {{ post.content|raw }}
-            </div>
+    <div class="max-w-3xl m-auto md:p-0 p-2 text-center">
+        <img class="w-full h-auto max-h-96 object-cover" src="{{ asset('uploads/posts/' ~ post.thumbnail) }}"
+             alt="{{ post.title }}">
+        <h1 class="text-3xl font-bold my-5">{{ post.title }}</h1>
+        <div class="text-lg md:text-justify text-left">
+            {{ post.content|raw }}
         </div>
     </div>
 {% endblock %}
