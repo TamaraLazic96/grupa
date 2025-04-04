@@ -1,4 +1,6 @@
 {
+    "name": "vendor/grupa",
+    "description": "Grupa",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
