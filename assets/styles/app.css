@@ -27,6 +27,10 @@ header{
     z-index: 50;
 }
 
+.logo{
+    max-height: 2rem;
+}
+
 /***
 Background: bg-white
 Header, Footer, Buttons: bg-amber-300
