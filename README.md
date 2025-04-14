@@ -14,7 +14,13 @@ Run symfony locally:
 
 ``symfony serve``
 
+``symfony server:start``
+
 If you do not want to have or use symfony server (use PHP built-in server):
 
 ``php -S localhost:8000 -t public``
+
+If you are changing FE of the application - you must use:
+``php bin/console tailwind:build``
+for rebuilding the tailwind classes and css.
 
