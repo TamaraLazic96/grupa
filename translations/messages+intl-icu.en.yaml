@@ -1,5 +1,8 @@
 default:
   page_title: 'Група комшија'
+  not_found: 'Страница није нађена'
+  not_found_text: 'Извињавамо се, али страница коју тражите не постоји.'
+  not_found_home: 'Вратите се на почетну'
 
 header:
   home: 'Почетна'
@@ -27,6 +30,7 @@ contact:
   subject: 'Тема'
   message: 'Порука'
   send: 'Пошаљи'
+  flash: 'Порука је успешно послата.'
 
 login:
   title: 'Улогуј се'

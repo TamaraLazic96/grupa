@@ -8,10 +8,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mime\Email;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class HomePageController extends AbstractController
 {
@@ -19,6 +21,10 @@ class HomePageController extends AbstractController
     public function index(PageRepository $pageRepository): Response {
 
         $page = $pageRepository->findPageById(1);
+
+        if (!$page) {
+            throw new NotFoundHttpException('');
+        }
 
         return $this->render('HomePage/index.html.twig', [
             'page' => $page
@@ -30,6 +36,10 @@ class HomePageController extends AbstractController
 
         $page = $pageRepository->findPageById(2);
 
+        if (!$page) {
+            throw new NotFoundHttpException('');
+        }
+
         return $this->render('HomePage/about-us.html.twig', [
             'page' => $page
         ]);
@@ -39,7 +49,7 @@ class HomePageController extends AbstractController
      * @throws TransportExceptionInterface
      */
     #[Route('/contact', name: 'contact')]
-    public function contact(Request $request, MailerInterface $mailer, ParameterBagInterface $params): Response
+    public function contact(Request $request, MailerInterface $mailer, ParameterBagInterface $params, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(ContactFormType::class);
 
@@ -50,13 +60,14 @@ class HomePageController extends AbstractController
 
             $email = (new Email())
                 ->from($data['email'])
+                ->replyTo($data['email'])
                 ->to($adminMail)
                 ->subject($data['subject'])
                 ->text($data['message']);
 
             $mailer->send($email);
 
-            $this->addFlash('success', 'Your message has been sent successfully!');
+            $this->addFlash('success', $translator->trans('contact.flash'));
 
             return $this->redirectToRoute('contact');
         }

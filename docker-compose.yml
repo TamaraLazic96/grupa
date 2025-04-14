@@ -12,8 +12,8 @@ services:
     depends_on:
       - database
     environment:
-      APP_ENV: dev
-      APP_DEBUG: 1
+      APP_ENV: ${APP_ENV}
+      APP_DEBUG: ${APP_DEBUG}
       DATABASE_URL: ${DATABASE_URL}
 
   database:
@@ -25,6 +25,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_CHARSET: utf8mb4
     ports:
       - "3306:3306"
     volumes:
