@@ -25,10 +25,10 @@ WORKDIR /var/www/symfony
 # Copy project files
 COPY . .
 
-RUN php bin/console cache:clear --env=prod && php bin/console cache:warmup --env=prod
-
 # Install dependencies
 RUN composer install --optimize-autoloader
+
+RUN php bin/console cache:clear --env=prod && php bin/console cache:warmup --env=prod
 
 # Install Tailwind binary via SymfonyCasts Tailwind bundle
 RUN php bin/console tailwind:init
