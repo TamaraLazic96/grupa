@@ -23,7 +23,7 @@ class UserCrudController extends AbstractCrudController {
             TextField::new('firstName', 'First name'),
             TextField::new('lastName', 'Last name'),
             EmailField::new('email', 'Email'),
-            TextField::new('password', 'Password'),
+//            TextField::new('password', 'Password'),
             ChoiceField::new('roles')->setChoices(
                 [
                     'User' => 'ROLE_USER',

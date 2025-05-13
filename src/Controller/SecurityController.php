@@ -69,27 +69,27 @@ class SecurityController extends AbstractController
 
             // Generate confirmation token
             $token = Uuid::v4()->toRfc4122();
-            $user->setConfirmationToken($token);
-            $user->setIsVerified(false);
+            $user->setConfirmationToken(null);
+            $user->setIsVerified(true);
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
-            $confirmationUrl = $urlGenerator->generate(
-                'app_confirm_email',
-                ['token' => $token],
-                UrlGeneratorInterface::ABSOLUTE_URL
-            );
+//            $confirmationUrl = $urlGenerator->generate(
+//                'app_confirm_email',
+//                ['token' => $token],
+//                UrlGeneratorInterface::ABSOLUTE_URL
+//            );
 
-            $email = (new Email())
-                ->from('no-reply@grupa.rs')
-                ->to($user->getEmail())
-                ->subject($translator->trans('register.email_confirm.subject'))
-                ->html($this->renderView('Email/confirmation.html.twig', [
-                    'confirmationUrl' => $confirmationUrl,
-                ]));
-
-            $mailer->send($email);
+//            $email = (new Email())
+//                ->from('no-reply@grupa.rs')
+//                ->to($user->getEmail())
+//                ->subject($translator->trans('register.email_confirm.subject'))
+//                ->html($this->renderView('Email/confirmation.html.twig', [
+//                    'confirmationUrl' => $confirmationUrl,
+//                ]));
+//
+//            $mailer->send($email);
 
             return $security->login($user, 'form_login', 'main');
         }

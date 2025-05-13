@@ -48,9 +48,9 @@
             <li><a href="{{ path('about-us') }}"
                    class="hover:border-b-2 border-white px-2 py-1 {{ app.request.attributes.get('_route') == 'about-us' ? 'border-b-2' : '' }}">
                     {{ "header.about_us"|trans|raw }}</a></li>
-            <li><a href="{{ path('contact') }}"
-                   class="hover:border-b-2 border-white px-2 py-1 {{ app.request.attributes.get('_route') == 'contact' ? 'border-b-2' : '' }}">
-                    {{ "header.contact_us"|trans|raw }}</a></li>
+{#            <li><a href="{{ path('contact') }}"#}
+{#                   class="hover:border-b-2 border-white px-2 py-1 {{ app.request.attributes.get('_route') == 'contact' ? 'border-b-2' : '' }}">#}
+{#                    {{ "header.contact_us"|trans|raw }}</a></li>#}
             <!-- Authentication Links -->
 {#            {% if app.user %}#}
 {#                <li><a href="{{ path('app_logout') }}" class="hover:border-b-2 border-white px-2 py-1">{{ "header.logout"|trans|raw }}</a></li>#}
@@ -71,9 +71,9 @@
             <li><a href="{{ path('about-us') }}"
                    class="hover:border-b-2 border-white block py-2 px-4 {{ app.request.attributes.get('_route') == 'about-us' ? 'border-b-2' : '' }}">
                     {{ "header.about_us"|trans|raw }}</a></li>
-            <li><a href="{{ path('contact') }}"
-                   class="hover:border-b-2 border-white block py-2 px-4 {{ app.request.attributes.get('_route') == 'contact' ? 'border-b-2' : '' }}">
-                    {{ "header.contact_us"|trans|raw }}</a></li>
+{#            <li><a href="{{ path('contact') }}"#}
+{#                   class="hover:border-b-2 border-white block py-2 px-4 {{ app.request.attributes.get('_route') == 'contact' ? 'border-b-2' : '' }}">#}
+{#                    {{ "header.contact_us"|trans|raw }}</a></li>#}
         </ul>
     </nav>
 </header>
