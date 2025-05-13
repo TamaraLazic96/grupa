@@ -7,6 +7,7 @@ services:
     container_name: symfony_app
     restart: always
     working_dir: /var/www/symfony
+    network_mode: host
     volumes:
       - .:/var/www/symfony
     depends_on:
