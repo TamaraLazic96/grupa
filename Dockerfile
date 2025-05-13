@@ -28,17 +28,17 @@ COPY . .
 # Install dependencies
 RUN composer install --optimize-autoloader
 
-RUN php bin/console cache:clear --env=prod && php bin/console cache:warmup --env=prod
+#RUN php bin/console cache:clear --env=prod && php bin/console cache:warmup --env=prod
 
 # Install Tailwind binary via SymfonyCasts Tailwind bundle
-RUN php bin/console tailwind:init
+#RUN php bin/console tailwind:init
 
 # Build Tailwind CSS using the local binary
-RUN php bin/console cache:clear && \
-    php bin/console assets:install public && \
-    php bin/console tailwind:build && \
-    php bin/console asset-map:compile && \
-    php bin/console cache:clear
+#RUN php bin/console cache:clear && \
+#    php bin/console assets:install public && \
+#    php bin/console tailwind:build && \
+#    php bin/console asset-map:compile && \
+#    php bin/console cache:clear
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/symfony/var /var/www/symfony/public/uploads
