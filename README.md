@@ -24,3 +24,5 @@ If you are changing FE of the application - you must use:
 ``php bin/console tailwind:build``
 for rebuilding the tailwind classes and css.
 
+For docker containers to run:
+``docker compose up``
