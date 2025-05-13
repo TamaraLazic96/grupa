@@ -35,7 +35,7 @@ services:
     image: nginx:latest
     container_name: symfony_nginx
     restart: always
-    network_mode: host
+#    network_mode: host
     ports:
       - "80:80"
     volumes:
