@@ -8,6 +8,29 @@
             {{ "default.page_title"|trans|raw }}
         {% endblock %}
     </title>
+    
+    {% set fullImageUrl = app.request.schemeAndHttpHost ~ asset('uploads/posts/' ~ post.thumbnail) %}
+    <!-- Open Graph Meta Tags for Social Media Sharing -->
+    <meta property="og:title" content="{% block og_title %}{{ "default.page_title"|trans|raw }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ "default.page_description"|trans|raw }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ fullImageUrl }}{% endblock %}">
+    <meta property="og:url" content="{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:site_name" content="Grupa Pančevo">
+    <meta property="og:locale" content="sr_RS">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ "default.page_title"|trans|raw }}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{{ "default.page_description"|trans|raw }}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ fullImageUrl }}{% endblock %}">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="description" content="{% block meta_description %}{{ "default.page_description"|trans|raw }}{% endblock %}">
+    <meta name="author" content="Grupa Pančevo">
+
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('icons/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('icons/favicon-16x16.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('icons/apple-touch-icon.png') }}">
