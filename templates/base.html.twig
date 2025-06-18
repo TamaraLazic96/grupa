@@ -8,12 +8,11 @@
             {{ "default.page_title"|trans|raw }}
         {% endblock %}
     </title>
-    
-    {% set fullImageUrl = app.request.schemeAndHttpHost ~ asset('uploads/posts/' ~ post.thumbnail) %}
+
     <!-- Open Graph Meta Tags for Social Media Sharing -->
     <meta property="og:title" content="{% block og_title %}{{ "default.page_title"|trans|raw }}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{{ "default.page_description"|trans|raw }}{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}{{ fullImageUrl }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ app.request.schemeAndHttpHost ~ asset('images/grupa.jpg') }}{% endblock %}">
     <meta property="og:url" content="{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}">
     <meta property="og:type" content="{% block og_type %}website{% endblock %}">
     <meta property="og:site_name" content="Grupa Pančevo">
@@ -25,8 +24,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{% block twitter_title %}{{ "default.page_title"|trans|raw }}{% endblock %}">
     <meta name="twitter:description" content="{% block twitter_description %}{{ "default.page_description"|trans|raw }}{% endblock %}">
-    <meta name="twitter:image" content="{% block twitter_image %}{{ fullImageUrl }}{% endblock %}">
-    
+    <meta name="twitter:image" content="{% block twitter_image %}{{ app.request.schemeAndHttpHost ~ asset('images/grupa.jpg') }}{% endblock %}">
+
     <!-- Additional Meta Tags -->
     <meta name="description" content="{% block meta_description %}{{ "default.page_description"|trans|raw }}{% endblock %}">
     <meta name="author" content="Grupa Pančevo">
